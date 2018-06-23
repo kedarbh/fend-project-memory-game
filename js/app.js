@@ -8,6 +8,8 @@ const deck = document.querySelector('.deck');
 
 let openCards = [];
 
+let moves = 0;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -46,6 +48,9 @@ function start() {
 		item.classList.remove('match', 'open', 'show');
 		deck.appendChild(item);
 	});
+
+	//reset moves to 0
+	moves = 0;
 }
 
 document.body.onload = start();
@@ -59,6 +64,7 @@ function checkMatch() {
 	openCards.push(this);
 
 	if(openCards.length === 2) {
+		countMoves();
 		if (openCards[0].innerHTML === openCards[1].innerHTML) {
 			openCards.forEach(function(item){
 				item.classList.add('match');
@@ -73,6 +79,16 @@ function checkMatch() {
 			});
 			openCards = [];
 		}
+	}
+}
+
+function countMoves() {
+	let moveCounts = document.querySelector('.moves');
+	moves++;
+	if (moves === 1) {
+		moveCounts.innerHTML = moves + ' Move';
+	} else{
+		moveCounts.innerHTML = moves + ' Moves';
 	}
 }
 
