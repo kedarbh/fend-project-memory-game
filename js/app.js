@@ -6,6 +6,7 @@ let cards = Array.from(card);
 
 const deck = document.querySelector('.deck');
 
+let openCards = [];
 
 /*
  * Display the cards on the page
@@ -50,13 +51,35 @@ function start() {
 document.body.onload = start();
 
 function displayCard() {
-	this.classList.toggle('open');
-	this.classList.toggle('show');
+	this.classList.add('open', 'show', 'disabled')
+}
+
+// @description check whether the flipped card matches
+function checkMatch() {
+	openCards.push(this);
+
+	if(openCards.length === 2) {
+		if (openCards[0].innerHTML === openCards[1].innerHTML) {
+			openCards.forEach(function(item){
+				item.classList.add('match');
+				item.classList.remove('show','open');
+			});
+			openCards = [];
+		} else {
+			openCards.forEach(function(item) {
+				setTimeout(function() {
+					item.classList.remove('show','open','disabled');
+				}, 500);
+			});
+			openCards = [];
+		}
+	}
 }
 
 //loop on card to handle events
 shuffledCards.forEach(function(item) {
 	item.addEventListener('click', displayCard);
+	item.addEventListener('click', checkMatch);
 });
 
 /*
