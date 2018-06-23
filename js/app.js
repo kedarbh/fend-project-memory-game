@@ -1,6 +1,10 @@
 /*
  * Create a list that holds all of your cards
  */
+let card = document.querySelectorAll('.card');
+let cards = Array.from(card);
+
+const deck = document.querySelector('.deck');
 
 
 /*
@@ -10,7 +14,10 @@
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+//@description shuffle card
+//@param {array} array
+//@returns shuffled cards
+//ref: Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -25,6 +32,32 @@ function shuffle(array) {
     return array;
 }
 
+
+//@description start the game
+function start() {
+	//load cards with shuffle feature
+	shuffledCards = shuffle(cards);
+	//replace the contents in deck with shuffled cards
+	deck.innerHTML = '';
+	//remove classes from the cards and append cards in deck
+	// TODO: check the performance of this code
+	shuffledCards.forEach(function(item, index, array) {
+		item.classList.remove('match', 'open', 'show');
+		deck.appendChild(item);
+	});
+}
+
+document.body.onload = start();
+
+function displayCard() {
+	this.classList.toggle('open');
+	this.classList.toggle('show');
+}
+
+//loop on card to handle events
+shuffledCards.forEach(function(item) {
+	item.addEventListener('click', displayCard);
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:
