@@ -87,10 +87,44 @@ function countMoves() {
 	moves++;
 	if (moves === 1) {
 		moveCounts.innerHTML = moves + ' Move';
+		startTime();
 	} else{
 		moveCounts.innerHTML = moves + ' Moves';
 	}
 }
+
+let hours= 0,
+	minutes = 0,
+	seconds = 0,
+	t;
+
+let time = document.querySelector('.time');
+let matchCard = document.querySelector('.match');
+
+// @description add time to the timer
+function timer() {
+	seconds++;
+	if(seconds >= 60) {
+		minutes++;
+		seconds = 0;
+		if(minutes >= 60) {
+			hours++;
+			minutes = 0;
+		}
+	}
+
+	time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+	startTime();
+}
+
+// @description start to count time
+function startTime() {
+	t = setTimeout(timer, 1000);
+}
+
+
+
 
 //loop on card to handle events
 shuffledCards.forEach(function(item) {
