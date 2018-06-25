@@ -100,6 +100,7 @@ h1 {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: #e3e634;
 }
 
 .score-panel .stars li {
@@ -107,7 +108,30 @@ h1 {
     display: inline-block;
 }
 
+.score-panel .moves {
+    display: inline-block;
+    margin: 0 15px 0 5px;
+}
+
 .score-panel .restart {
     float: right;
     cursor: pointer;
 }
+
+
+/* congratulation box design*/
+.complete-message{
+    display: hidden;
+}
+
+.info-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.game-details span {
+    color: red;
+    font-weight: bold;
+}
+
+

@@ -82,8 +82,10 @@ function checkMatch() {
 	}
 }
 
+let moveCounts = document.querySelector('.moves');
+let stars = document.getElementsByClassName('fa-star');
+
 function countMoves() {
-	let moveCounts = document.querySelector('.moves');
 	moves++;
 	if (moves === 1) {
 		moveCounts.innerHTML = moves + ' Move';
@@ -91,6 +93,22 @@ function countMoves() {
 	} else{
 		moveCounts.innerHTML = moves + ' Moves';
 	}
+
+	//ratings
+	if (moves > 8 && moves < 12){
+        for( i= 0; i < 3; i++){
+            if(i > 1){
+                stars[i].style.color = "#d3d3d3";
+            }
+        }
+    }
+    else if (moves > 13){
+        for( i= 0; i < 3; i++){
+            if(i > 0){
+                stars[i].style.color = "#d3d3d3";
+            }
+        }
+    }
 }
 
 let hours= 0,
@@ -99,7 +117,7 @@ let hours= 0,
 	t;
 
 let time = document.querySelector('.time');
-let matchCard = document.querySelector('.match');
+let matchCard = document.getElementsByClassName('match');
 
 // @description add time to the timer
 function timer() {
@@ -123,6 +141,21 @@ function startTime() {
 	t = setTimeout(timer, 1000);
 }
 
+function completeGame() {
+	if(matchCard.length === 16) {
+		//console.log('game complete');
+		clearTimeout(t);
+
+		let totalMove = document.querySelector('.total-move');
+		let totalTime = document.querySelector('.total-time');
+		let finalStar = document.querySelector('.ratings');
+		totalTime.innerHTML = time.innerHTML;
+		totalMove.innerHTML = moveCounts.innerHTML;
+		// finalStar.innerHTML =
+
+
+	}
+}
 
 
 
@@ -130,6 +163,7 @@ function startTime() {
 shuffledCards.forEach(function(item) {
 	item.addEventListener('click', displayCard);
 	item.addEventListener('click', checkMatch);
+	item.addEventListener('click', completeGame);
 });
 
 /*
