@@ -38,8 +38,7 @@ h1 {
  */
 
  .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 85%;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -52,8 +51,8 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 4rem;
+    width: 4rem;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -63,6 +62,7 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    margin: .3rem .3rem;
 }
 
 .deck .card.open {
@@ -149,12 +149,12 @@ h1 {
     text-align: right;
 }
 
-.info-heading {
+.info {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-.game-details span {
+.info span {
     color: red;
     font-weight: bold;
 }
@@ -178,18 +178,36 @@ h1 {
     cursor: pointer;
 }
 
-.game-details {
-    float: left;
+
+/*media queries*/
+
+@media screen and (max-width: 320px) {
+    .deck {
+        width: 90%;
+    }
+    .deck .card {
+        height: 100px;
+        width: 100px;
+    }
 }
 
-.image-trophy {
-    float: right;
-    margin-top: -110px;
+@media screen and (min-width: 320px) and (max-width: 720px) {
+    .deck .card {
+        height: 105px;
+        width: 105px;
+        /*margin: 0.1rem 0.1rem;*/
+    }
+
 }
 
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
+@media screen and (min-width: 720px) {
+    .deck {
+        width: 660px;
+        min-height: 680px;
+    }
+    .deck .card {
+        height: 125px;
+        width: 125px;
+    }
 
+}
