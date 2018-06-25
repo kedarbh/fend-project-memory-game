@@ -10,6 +10,20 @@ let openCards = [];
 
 let moves = 0;
 
+let moveCounts = document.querySelector('.moves');
+
+let stars = document.getElementsByClassName('fa-star');
+
+let hours= 0,
+	minutes = 0,
+	seconds = 0,
+	t;
+
+let time = document.querySelector('.time');
+let matchCard = document.getElementsByClassName('match');
+
+const closePopup = document.querySelector('.popup-close');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -45,18 +59,31 @@ function start() {
 	//remove classes from the cards and append cards in deck
 	// TODO: check the performance of this code
 	shuffledCards.forEach(function(item, index, array) {
-		item.classList.remove('match', 'open', 'show');
+		item.classList.remove('match', 'open', 'show','disabled');
 		deck.appendChild(item);
 	});
 
 	//reset moves to 0
 	moves = 0;
+	moveCounts.innerHTML = moves + ' Moves';
+	//reset timer
+	clearTimeout(t);
+	time.textContent = '00:00:00';
+	hours = 0;
+	minutes = 0;
+	seconds = 0;
+	//reset rating
+	for( i= 0; i < 3; i++){
+        stars[i].style.color = '#e3e634';
+    }
 }
 
 document.body.onload = start();
 
 function displayCard() {
-	this.classList.add('open', 'show', 'disabled')
+	this.classList.toggle('open');
+	this.classList.toggle('show');
+	this.classList.toggle('disabled');
 }
 
 // @description check whether the flipped card matches
@@ -82,8 +109,6 @@ function checkMatch() {
 	}
 }
 
-let moveCounts = document.querySelector('.moves');
-let stars = document.getElementsByClassName('fa-star');
 
 function countMoves() {
 	moves++;
@@ -111,13 +136,7 @@ function countMoves() {
     }
 }
 
-let hours= 0,
-	minutes = 0,
-	seconds = 0,
-	t;
 
-let time = document.querySelector('.time');
-let matchCard = document.getElementsByClassName('match');
 
 // @description add time to the timer
 function timer() {
@@ -141,23 +160,36 @@ function startTime() {
 	t = setTimeout(timer, 1000);
 }
 
+let messageBox = document.querySelector('.complete-message');
 function completeGame() {
 	if(matchCard.length === 16) {
-		//console.log('game complete');
-		clearTimeout(t);
 
+		clearTimeout(t);
+		//make congratulation box appear
+		messageBox.style.visibility = 'visible';
 		let totalMove = document.querySelector('.total-move');
 		let totalTime = document.querySelector('.total-time');
 		let finalStar = document.querySelector('.ratings');
+
 		totalTime.innerHTML = time.innerHTML;
 		totalMove.innerHTML = moveCounts.innerHTML;
-		// finalStar.innerHTML =
+		finalStar.innerHTML = document.querySelector('.stars').innerHTML;
 
-
+		closeInfoBox();
 	}
 }
 
+// @description reset the game
+function restart() {
+	messageBox.style.visibility = 'hidden';
+	start();
+}
 
+function closeInfoBox() {
+	closePopup.addEventListener('click', function() {
+		restart();
+	});
+}
 
 //loop on card to handle events
 shuffledCards.forEach(function(item) {
