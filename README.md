@@ -1,20 +1,27 @@
 # Memory Game Project
 
-## Table of Contents
+## Introduction
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+Memory Game is a simple game that checks the capacity of a player to remember details. Player needs to match all card to win the game.
 
-## Instructions
+## How to play
+* Player must select two cards.
+* If matched remains open.
+* Mismactched cards will turnover and player needs to select a pair of card.
+* All cards need to be matched to win the game.
+* Player will be awarded stars depeding on the move taken to complete the game.
+* Timer will begin once player selects a pair of card.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Game rating system
+* If player completes the game within 8 moves then player will be awarded 3 stars.
+* If player completes the game within 13 moves then player will be awarded 2 stars
+* If players completes the game with more than 13 moves then player will be awarded single star.
 
-To get started, open `js/app.js` and start building out the app's functionality
+Use your memory to complete the game as soon as possible.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## Where to play
 
-## Contributing
+visit https://kedarbh.github.io/fend-project-memory-game/ to play.
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Resources
+* [Font Awesome](https://fontawesome.com/)
